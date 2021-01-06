@@ -2,6 +2,7 @@ package org.sadtech.example.swagger.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 /**
@@ -16,7 +17,7 @@ public class UserDto {
     @Schema(description = "ФИО", example = "Иванов Иван Иванович")
     private String name;
 
-    @Schema(description = "Баллы пользователя")
+    @Schema(description = "Баллы пользователя", accessMode = Schema.AccessMode.READ_ONLY)
     private Long points = 0L;
 
     @Schema(description = "Пол пользователя")
