@@ -35,8 +35,8 @@ public class PointController {
     @PostMapping("{key}")
     @Operation(summary = "Управление баллами", description = "Позволяет удалить или добавить баллы пользователю")
     public HttpStatus changePoints(
-            @PathVariable @NotBlank @Parameter(description = "Идентификатор пользователя") String key,
-            @RequestParam("point") @Min(0) @Parameter(description = "Количество баллов", required = true) Long point,
+            @PathVariable @NotBlank @Parameter(description = "Идентификатор пользователя", example = "key1") String key,
+            @RequestParam("point") @Min(0) @Parameter(description = "Количество баллов", required = true, example = "10") Long point,
             @RequestParam("type") @Parameter(description = "Тип операции", required = true) TypeOperation type
     ) {
         final UserDto userDto = repository.get(key);

@@ -1,1 +1,25 @@
-
+#springdoc:
+#  swagger-ui:
+#    oauth:
+#      client-id: mocklab_oidc
+#      client-secret: whatever
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          mocklab:
+            provider: mocklab
+            client-authentication-method: basic
+            authorization-grant-type: authorization_code
+            scope: profile, email
+            redirect-uri: http://localhost:8080/login/oauth2/code/
+            clientId: mocklab_oidc
+            clientSecret: whatever
+        provider:
+          mocklab:
+            authorization-uri: https://oauth.mocklab.io/oauth/authorize
+            token-uri: https://oauth.mocklab.io/oauth/token
+            user-info-uri: https://oauth.mocklab.io/userinfo
+            user-name-attribute: sub
+            jwk-set-uri: https://oauth.mocklab.io/.well-known/jwks.json

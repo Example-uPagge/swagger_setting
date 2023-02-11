@@ -1,6 +1,7 @@
 package org.sadtech.example.swagger.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.sadtech.example.swagger.dto.UserDto;
 import org.springframework.http.HttpStatus;
@@ -48,9 +49,12 @@ public class UserController {
         return HttpStatus.OK;
     }
 
+    @SecurityRequirement(name = "jsessionid")
     @GetMapping(value = "{key}", produces = APPLICATION_JSON_VALUE)
     @Operation(summary = "Получить пользователя")
-    public ResponseEntity<UserDto> getSimpleDto(@PathVariable("key") String key) {
+    public ResponseEntity<UserDto> getSimpleDto(
+            @PathVariable("key") String key
+    ) {
         return ResponseEntity.ok(repository.get(key));
     }
 
